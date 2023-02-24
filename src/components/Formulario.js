@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
+import Form from "../estiloFormulario";
+import Boton from "../estiloBoton";
+import H2 from "../estilosH2";
+import Label from "../estilosLabel";
 const Formulario = ({crearCita}) => {
     const [cita, actualizarCita] = useState({
         nombre: '',
@@ -49,28 +53,27 @@ const Formulario = ({crearCita}) => {
 
     return (
         <Fragment>
-            <h2>Crear Cita</h2>
+            <H2>Crear Cita</H2>
             {error ? <p className="alerta-error">Todos los campos son obligatorios</p> : null}
-            <form onSubmit={submitCita}>
-                <label>Nombre</label>
-                <input type="text" name="nombre" className="u-full-width" placeholder="Nombre" onChange={handleChange} value={nombre} />
-                <label>Apellidos</label>
-                <input type="text" name="apellidos" className="u-full-width" placeholder="Apellidos" onChange={handleChange} value={apellidos} />
-                <label>Email</label>
-                <input type="email" name="email" className="u-full-width" placeholder="Email" onChange={handleChange} value={email} />
-                <label>Teléfono</label>
-                <input type="tel" name="telefono" className="u-full-width" placeholder="Teléfono" onChange={handleChange} value={telefono} />
-                <label>Fecha Alta</label>
+            <Form onSubmit={submitCita}>
+                <Label>Nombre</Label>
+                <input type="text" name="nombre" className="u-full-width" placeholder="Nombre" onChange={handleChange} value={nombre}/>
+                <Label>Apellidos</Label>
+                <input type="text" name="apellidos" className="u-full-width" placeholder="Apellidos" onChange={handleChange} value={apellidos}/>
+                <Label>Email</Label>
+                <input type="email" name="email" className="u-full-width" placeholder="Email" onChange={handleChange} value={email} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                <Label>Teléfono</Label>
+                <input type="tel" name="telefono" className="u-full-width" placeholder="Teléfono" onChange={handleChange} value={telefono} pattern="[0-9]{9}"/>
+                <Label>Fecha Alta</Label>
                 <input type="date" name="alta" className="u-full-width" onChange={handleChange} value={alta} />
-                <label>Síntomas</label>
+                <Label>Síntomas</Label>
                 <textarea className="u-full-width" name="sintomas" onChange={handleChange} value={sintomas}></textarea>
-                <button type="submit" className="u-full-width button-primary">Agregar Cita</button>
-            </form>
+                <Boton type="submit" className="u-full-width button-primary">Agregar Cita</Boton>
+            </Form>
         </Fragment>
     );
 
 }
-
 Formulario.propTypes = {
     crearCita: PropTypes.func.isRequired
 }
