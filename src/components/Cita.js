@@ -1,8 +1,8 @@
-import styled from "styled-components";
 import React from "react";
 import PropTypes from "prop-types";
 import Boton from "../estiloBoton";
 import P from "../estilosP";
+
 
 const Cita = ({ cita, eliminarCita }) => {
     return (
@@ -18,6 +18,7 @@ const Cita = ({ cita, eliminarCita }) => {
     )
 }
 
+//Cita es un objeto que se pasa como prop desde el componente principal
 Cita.prototype={
     cita: PropTypes.object.isRequired,
     eliminarCita: PropTypes.func.isRequired

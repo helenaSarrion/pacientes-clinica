@@ -1,20 +1,20 @@
-import styled from "styled-components";
 import React, { Fragment, useState, useEffect } from 'react'
 import Formulario from './components/Formulario'
 import Cita from './components/Cita'
 
 function App() {
   let citasIniciales = JSON.parse(localStorage.getItem('citas'));
-  if (!citasIniciales) {
+  if (!citasIniciales) { //si las citas iniciales no existen se creara un array vacio
     citasIniciales = [];
   }
   const [citas, guardarCitas] = useState(citasIniciales);
 
+  //useEffect para realizar ciertas operaciones cuando el state cambia
   useEffect(() => {
     if (citasIniciales) {
-      localStorage.setItem('citas', JSON.stringify(citas))
+      localStorage.setItem('citas', JSON.stringify(citas)) //se guarda en el local storage las citas
     } else {
-      localStorage.setItem('citas', JSON.stringify([]))
+      localStorage.setItem('citas', JSON.stringify([])) //si no hay citas se guarda un array vacio
     }
   }, [citas, citasIniciales])
 
@@ -23,10 +23,12 @@ function App() {
   }
 
 
+  //esta funcion nos permitira eliminar una cita por su id
   const eliminarCita = id => {
     const nuevasCitas = citas.filter(cita => cita.id !== id);
     guardarCitas(nuevasCitas);
   }
+
 
 
   const titulo = citas.length === 0 ? 'No hay citas' : 'Administra tus citas';

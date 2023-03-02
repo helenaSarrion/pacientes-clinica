@@ -1,10 +1,11 @@
-import styled from "styled-components";
 import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 import Form from "../estiloFormulario";
 import Boton from "../estiloBoton";
 import H2 from "../estilosH2";
 import Label from "../estilosLabel";
+
+//const Formulario sirve para crear una cita nueva y añadirla al array de citas del componente principal 
 const Formulario = ({crearCita}) => {
     const [cita, actualizarCita] = useState({
         nombre: '',
@@ -17,6 +18,7 @@ const Formulario = ({crearCita}) => {
 
     const [error, actualizarError] = useState(false)
 
+    //Función que se ejecuta cada vez que el usuario escribe en un input 
     const handleChange = e => {
         actualizarCita({
             ...cita,
@@ -26,6 +28,7 @@ const Formulario = ({crearCita}) => {
 
     const {nombre, apellidos, email, telefono, alta, sintomas} = cita;
 
+    //Cuando el usuario pulsa en el boton de agregar cita se ejecuta esta función 
     const submitCita = e =>{
         e.preventDefault();
         if(nombre.trim() === '' || apellidos.trim() === '' || email.trim() === '' || telefono.trim() === '' || alta.trim() === '' || sintomas.trim() === ''){
@@ -54,6 +57,7 @@ const Formulario = ({crearCita}) => {
     return (
         <Fragment>
             <H2>Crear Cita</H2>
+            {/**Si error es true se muestra el mensaje de error */}
             {error ? <p className="alerta-error">Todos los campos son obligatorios</p> : null}
             <Form onSubmit={submitCita}>
                 <Label>Nombre</Label>
