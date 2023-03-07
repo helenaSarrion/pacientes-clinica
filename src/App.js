@@ -19,7 +19,7 @@ function App() {
   }, [citas, citasIniciales])
 
   const crearCita = cita => {
-    guardarCitas([...citas, cita]);
+    guardarCitas([...citas, cita]); //se guarda la cita en el state de citas
   }
 
 
